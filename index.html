@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preventa en piloto automático · Andrés Olaya</title>
+<meta name="description" content="Prototipo de Andrés Olaya para la vacante GTM Engineer: dos herramientas de preventa construidas sobre la documentación pública de Yuno.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="yuno-logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="logo"><img src="yuno-logo.svg" alt="Yuno" width="78" height="23"></a>
+    <div class="nav-right">
+      <nav class="links">
+        <a href="#copiloto">Copiloto RFP</a>
+        <a href="#ficha">Ficha de descubrimiento</a>
+      </nav>
+      <a class="btn blue sm" href="https://www.andresolaya.net/" target="_blank" rel="noopener">Ver portafolio</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-head">
+    <h1 class="display">Las respuestas ya existen.<br>Solo había que encontrarlas.</h1>
+    <div class="hero-cta">
+      <a class="btn blue" href="#copiloto">Probar el copiloto</a>
+      <a class="btn ghost" href="#ficha">Ver la ficha de descubrimiento</a>
+    </div>
+  </div>
+
+  <div class="stage-wrap" id="stageWrap">
+    <div class="stage-pin">
+      <div class="stage" id="stage">
+        <div class="stage-glow"></div>
+        <div class="scene" id="scene">
+          <div class="lane lane-q">
+            <div class="slot-q" id="slotQ"></div>
+          </div>
+          <div class="engine" id="engine">
+            <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+            <span class="arc"></span>
+            <div class="orb-in">
+              <img src="yuno-logo.svg" alt="" width="70" height="21">
+              <p class="orb-l">docs.y.uno</p>
+            </div>
+            <p class="ticker" id="ticker">esperando pregunta</p>
+          </div>
+          <div class="lane lane-a">
+            <div class="answers" id="answers"></div>
+          </div>
+          <p class="hero-count"><span id="heroCount">0</span> preguntas respondidas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COPILOTO -->
+<section class="sec white" id="copiloto">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="headline">Un cuestionario de seguridad trae cientos de preguntas. Casi todas ya están respondidas en la documentación de Yuno.</h2>
+      <p class="sec-sub">El copiloto las responde con la página exacta como fuente. Lo que no encuentra no lo inventa: se lo pasa a un ingeniero.</p>
+    </div>
+
+    <div class="counters reveal">
+      <div><p class="cnt" data-k="ans">0</p><p class="cnt-l">respondidas con fuente</p></div>
+      <div><p class="cnt" data-k="rev">0</p><p class="cnt-l">pasan a un ingeniero</p></div>
+      <div><p class="cnt" data-k="hrs">0</p><p class="cnt-l">horas ahorradas</p></div>
+      <div><p class="cnt" data-k="docs">0</p><p class="cnt-l">páginas de docs citadas</p></div>
+    </div>
+
+    <div class="hatch reveal">
+      <div class="win">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="win-file">Copiloto RFP · preventa Yuno</span>
+          <div class="win-actions">
+            <button class="btn ghost xs" id="btnExport" disabled>Exportar CSV</button>
+            <button class="btn ghost xs" id="btnReset" hidden>Reiniciar</button>
+          </div>
+        </div>
+
+        <!-- Paso 1: subir el archivo -->
+        <div class="drop" id="drop">
+          <div class="drop-box" id="dropBox">
+            <div class="file-card" id="fileCard">
+              <span class="xls">XLSX</span>
+              <div>
+                <p class="fc-name">AndesAir_Cuestionario_Seguridad.xlsx</p>
+                <p class="fc-meta">Andes Air (aerolínea ficticia) · 20 preguntas · vence en 4 días</p>
+              </div>
+            </div>
+            <div class="up-bar"><span id="upBar"></span></div>
+            <p class="up-l" id="upL">Archivo listo para analizar</p>
+            <button class="btn blue" id="btnRun">Iniciar</button>
+          </div>
+        </div>
+
+        <!-- Paso 2: respuestas -->
+        <div class="win-body" id="winBody" hidden>
+          <div class="qlist" id="qlist"></div>
+          <aside class="side" id="side">
+            <div class="side-idle" id="sideIdle">
+              <div class="scan"><span></span></div>
+              <p class="side-l" id="sideLabel">Leyendo docs.y.uno</p>
+              <p class="side-doc" id="sideDoc"></p>
+            </div>
+            <div class="side-ans" id="sideAns" hidden></div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FICHA -->
+<section class="sec black" id="ficha">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 class="headline light">Antes de la primera reunión, el vendedor necesita saber qué le falta al prospecto y qué ofrecerle.</h2>
+      <p class="sec-sub light">Escribe el dominio de la empresa. La ficha le dice qué pagos pierde en cada país, qué productos de Yuno le sirven, cuánto dinero está en juego y qué preguntar en la reunión.</p>
+    </div>
+
+    <div class="search reveal">
+      <span class="search-ico">↗</span>
+      <input class="typed" id="typed" type="text" placeholder="Escribe el dominio del prospecto" autocomplete="off" spellcheck="false">
+      <button class="btn blue sm" id="btnBrief">Crear ficha</button>
+    </div>
+    <div class="chips" id="chips"></div>
+
+    <div class="brief" id="brief"></div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap end-in">
+    <p class="end-t">Hecho por Andrés Olaya.</p>
+    <a class="btn blue" href="https://www.andresolaya.net/" target="_blank" rel="noopener">Ver portafolio</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Prototipo. Respuestas basadas en <a href="https://docs.y.uno/llms.txt" target="_blank" rel="noopener">docs.y.uno</a>; prospectos y cifras simulados.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

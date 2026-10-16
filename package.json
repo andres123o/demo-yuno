@@ -1,0 +1,7 @@
+{
+  "name": "presales-toolkit-andres",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes serve -l 3000 ."
+  }
+}
